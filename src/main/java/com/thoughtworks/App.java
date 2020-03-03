@@ -2,7 +2,9 @@ package com.thoughtworks;
 
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class App {
 
@@ -45,34 +47,41 @@ public class App {
   }
 
   public static List<Transaction> get2011Transactions(List<Transaction> transactions) {
-    return Collections.emptyList();
+    return transactions.stream().filter(transaction -> transaction.getYear()==2011).sorted(Comparator.comparingInt(Transaction::getValue)).collect(Collectors.toList());
   }
 
   public static List<String> getTradersCity(List<Transaction> transactions) {
+    // 2.交易员都在哪些不同的􏱜城市工作过
     return Collections.emptyList();
   }
 
   public static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
+    // 3.查找所有来自于剑桥的交易员，并按姓名排序
     return Collections.emptyList();
   }
 
   public static List<String> getTradersName(List<Transaction> transactions) {
+    // 4.返回所有交易员的姓名字符串，按字母顺序排序
     return Collections.emptyList();
   }
 
   public static boolean hasMilanTrader(List<Transaction> transactions) {
+    // 5.有没有交易员是在米兰工作的
     return false;
   }
 
   public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
+    // 6.返回交易员是剑桥的所有交易的交易额
     return Collections.emptyList();
   }
 
   public static int getMaxTransactionValue(List<Transaction> transactions) {
+    // 7.所有交易中，最高的交易额是多少
     return 0;
   }
 
   public static Transaction getMinTransaction(List<Transaction> transactions) {
+    // 8.返回交易额最小的交易
     return null;
   }
 }
