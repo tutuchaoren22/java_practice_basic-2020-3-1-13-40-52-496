@@ -52,7 +52,7 @@ public class App {
     }
 
     public static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
+        return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).distinct().sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
     }
 
     public static List<String> getTradersName(List<Transaction> transactions) {
@@ -72,7 +72,6 @@ public class App {
     }
 
     public static Transaction getMinTransaction(List<Transaction> transactions) {
-        // 8.返回交易额最小的交易
-        return null;
+        return transactions.stream().min(Comparator.comparingInt(Transaction::getValue)).get();
     }
 }
