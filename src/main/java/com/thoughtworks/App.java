@@ -1,11 +1,7 @@
 package com.thoughtworks;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 public class App {
 
@@ -64,7 +60,7 @@ public class App {
     }
 
     public static boolean hasMilanTrader(List<Transaction> transactions) {
-        return transactions.stream().filter(transaction -> transaction.getTrader().getCity() == "Milan").count() == 0;
+        return transactions.stream().noneMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
     }
 
     public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
@@ -73,8 +69,7 @@ public class App {
     }
 
     public static int getMaxTransactionValue(List<Transaction> transactions) {
-        // 7.所有交易中，最高的交易额是多少
-        return 0;
+        return transactions.stream().map(Transaction::getValue).max(Comparator.comparingInt(value -> value)).get();
     }
 
     public static Transaction getMinTransaction(List<Transaction> transactions) {
