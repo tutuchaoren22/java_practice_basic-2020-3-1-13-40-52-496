@@ -59,8 +59,7 @@ public class App {
     }
 
     public static List<String> getTradersName(List<Transaction> transactions) {
-        // 4.返回所有交易员的姓名字符串，按字母顺序排序
-        return Collections.emptyList();
+      return transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted(String::compareTo).collect(Collectors.toList());
     }
 
     public static boolean hasMilanTrader(List<Transaction> transactions) {
