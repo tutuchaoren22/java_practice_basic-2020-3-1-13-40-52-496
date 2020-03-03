@@ -64,8 +64,7 @@ public class App {
     }
 
     public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
-        // 6.返回交易员是剑桥的所有交易的交易额
-        return Collections.emptyList();
+        return transactions.stream().filter(transaction -> transaction.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).collect(Collectors.toList());
     }
 
     public static int getMaxTransactionValue(List<Transaction> transactions) {
