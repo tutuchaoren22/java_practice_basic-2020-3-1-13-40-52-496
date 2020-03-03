@@ -55,8 +55,7 @@ public class App {
     }
 
     public static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
-        // 3.查找所有来自于剑桥的交易员，并按姓名排序
-        return Collections.emptyList();
+      return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
     }
 
     public static List<String> getTradersName(List<Transaction> transactions) {
