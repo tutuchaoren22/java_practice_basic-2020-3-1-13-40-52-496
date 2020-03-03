@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class App {
 
@@ -55,16 +56,15 @@ public class App {
     }
 
     public static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
-      return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
+        return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
     }
 
     public static List<String> getTradersName(List<Transaction> transactions) {
-      return transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted(String::compareTo).collect(Collectors.toList());
+        return transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted(String::compareTo).collect(Collectors.toList());
     }
 
     public static boolean hasMilanTrader(List<Transaction> transactions) {
-        // 5.有没有交易员是在米兰工作的
-        return false;
+        return transactions.stream().filter(transaction -> transaction.getTrader().getCity() == "Milan").count() == 0;
     }
 
     public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
