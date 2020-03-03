@@ -60,7 +60,7 @@ public class App {
     }
 
     public static boolean hasMilanTrader(List<Transaction> transactions) {
-        return transactions.stream().noneMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
+        return transactions.stream().anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
     }
 
     public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
