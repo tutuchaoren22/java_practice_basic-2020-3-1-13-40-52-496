@@ -68,10 +68,10 @@ public class App {
     }
 
     public static int getMaxTransactionValue(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getValue).max(Comparator.comparingInt(value -> value)).get();
+        return transactions.stream().map(Transaction::getValue).max(Comparator.comparingInt(value -> value)).orElseThrow(NoSuchElementException::new);
     }
 
     public static Transaction getMinTransaction(List<Transaction> transactions) {
-        return transactions.stream().min(Comparator.comparingInt(Transaction::getValue)).get();
+        return transactions.stream().min(Comparator.comparingInt(Transaction::getValue)).orElseThrow(NoSuchElementException::new);
     }
 }
