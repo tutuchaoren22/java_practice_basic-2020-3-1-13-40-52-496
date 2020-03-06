@@ -44,34 +44,58 @@ public class App {
     }
 
     public static List<Transaction> get2011Transactions(List<Transaction> transactions) {
-        return transactions.stream().filter(transaction -> transaction.getYear() == 2011).sorted(Comparator.comparingInt(Transaction::getValue)).collect(Collectors.toList());
+        return transactions.stream()
+                .filter(transaction -> transaction.getYear() == 2011)
+                .sorted(Comparator.comparingInt(Transaction::getValue))
+                .collect(Collectors.toList());
     }
 
     public static List<String> getTradersCity(List<Transaction> transactions) {
-        return transactions.stream().map(transaction -> transaction.getTrader().getCity()).distinct().collect(Collectors.toList());
+        return transactions.stream()
+                .map(transaction -> transaction.getTrader().getCity())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
     public static List<Trader> getCambridgeTraders(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getTrader).filter(trader -> trader.getCity().equals("Cambridge")).distinct().sorted(Comparator.comparing(Trader::getName)).collect(Collectors.toList());
+        return transactions.stream()
+                .map(Transaction::getTrader)
+                .filter(trader -> trader.getCity().equals("Cambridge"))
+                .distinct()
+                .sorted(Comparator.comparing(Trader::getName))
+                .collect(Collectors.toList());
     }
 
     public static List<String> getTradersName(List<Transaction> transactions) {
-        return transactions.stream().map(transaction -> transaction.getTrader().getName()).distinct().sorted(String::compareTo).collect(Collectors.toList());
+        return transactions.stream()
+                .map(transaction -> transaction.getTrader().getName())
+                .distinct()
+                .sorted(String::compareTo)
+                .collect(Collectors.toList());
     }
 
     public static boolean hasMilanTrader(List<Transaction> transactions) {
-        return transactions.stream().anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
+        return transactions.stream()
+                .anyMatch(transaction -> transaction.getTrader().getCity().equals("Milan"));
     }
 
     public static List<Integer> getCambridgeTransactionsValue(List<Transaction> transactions) {
-        return transactions.stream().filter(transaction -> transaction.getTrader().getCity().equals("Cambridge")).map(Transaction::getValue).collect(Collectors.toList());
+        return transactions.stream()
+                .filter(transaction -> transaction.getTrader().getCity().equals("Cambridge"))
+                .map(Transaction::getValue)
+                .collect(Collectors.toList());
     }
 
     public static int getMaxTransactionValue(List<Transaction> transactions) {
-        return transactions.stream().map(Transaction::getValue).max(Comparator.comparingInt(value -> value)).orElseThrow(NoSuchElementException::new);
+        return transactions.stream()
+                .map(Transaction::getValue)
+                .max(Comparator.comparingInt(value -> value))
+                .orElseThrow(NoSuchElementException::new);
     }
 
     public static Transaction getMinTransaction(List<Transaction> transactions) {
-        return transactions.stream().min(Comparator.comparingInt(Transaction::getValue)).orElseThrow(NoSuchElementException::new);
+        return transactions.stream()
+                .min(Comparator.comparingInt(Transaction::getValue))
+                .orElseThrow(NoSuchElementException::new);
     }
 }
